@@ -49,7 +49,7 @@ void colorDetectionCallback(const sensor_msgs::ImageConstPtr& original_image)
     * in the constructor in main().
     */
     //Convert the CvImage to a ROS image message and publish it on the "camera/image_processed" topic.
-        pub.publish(cv_ptr->toImageMsg());
+    pub.publish(cv_ptr->toImageMsg());
 }
 //This function is called everytime a new image is published
 void imageCallback(const sensor_msgs::ImageConstPtr& original_image)
