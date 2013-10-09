@@ -1,0 +1,22 @@
+<package>
+  <description brief="color_detection">
+
+     color_detection
+
+  </description>
+  <author>penghou</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/color_detection</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="std_msgs"/>
+  <depend package="rviz"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="uvc_camera"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+
