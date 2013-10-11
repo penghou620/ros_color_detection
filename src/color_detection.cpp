@@ -20,6 +20,13 @@ static const char WINDOW[] = "Image Processed";
 //Use method of ImageTransport to create image publisher
 image_transport::Publisher pub;
 
+int LowerH = 160;
+int LowerS = 52;
+int LowerV = 139;
+int UpperH = 180;
+int UpperS = 196;
+int UpperV = 170;
+
 void colorDetectionCallback(const sensor_msgs::ImageConstPtr& original_image)
 {
     //Convert from the ROS image message to a CvImage suitable for working with OpenCV for processing
@@ -28,7 +35,7 @@ void colorDetectionCallback(const sensor_msgs::ImageConstPtr& original_image)
     {
         //Always copy, returning a mutable CvImage
         //OpenCV expects color images to use BGR channel order.
-        cv_ptr = cv_bridge::toCvCopy(original_image, enc::MONO8);
+        cv_ptr = cv_bridge::toCvCopy(original_image, enc::BGR8);
     }
     catch (cv_bridge::Exception& e)
     {
@@ -36,8 +43,9 @@ void colorDetectionCallback(const sensor_msgs::ImageConstPtr& original_image)
         ROS_ERROR("tutorialROSOpenCV::main.cpp::cv_bridge exception: %s", e.what());
         return;
     }
-	cv::Mat img_mask; 
-	cv::inRange(cv_ptr->image,cv::Scalar(155,0,0),cv::Scalar(255,130,130),img_mask); 
+	cv::Mat img_mask,img_hsv; 
+	cv::cvtColor(cv_ptr->image,img_hsv,CV_BGR2HSV);
+	cv::inRange(img_hsv,cv::Scalar(LowerH,LowerS,LowerV),cv::Scalar(UpperH,UpperS,UpperV),img_mask); 
     //Display the image using OpenCV
     cv::imshow(WINDOW, img_mask);
     //Add some delay in miliseconds. The function only works if there is at least one HighGUI window created and the window is active. If there are several HighGUI windows, any of them can be active.
@@ -124,6 +132,15 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
     //Create an ImageTransport instance, initializing it with our NodeHandle.
     image_transport::ImageTransport it(nh);
+
+	cv::namedWindow("Ball");
+	cv::createTrackbar("LowerH","Ball",&LowerH,180,NULL);
+	cv::createTrackbar("UpperH","Ball",&UpperH,180,NULL);
+	cv::createTrackbar("LowerS","Ball",&LowerS,256,NULL);
+	cv::createTrackbar("UpperS","Ball",&UpperS,256,NULL);
+	cv::createTrackbar("LowerV","Ball",&LowerV,256,NULL);
+	cv::createTrackbar("UpperV","Ball",&UpperV,256,NULL);
+
     //OpenCV HighGUI call to create a display window on start-up.
     cv::namedWindow(WINDOW, CV_WINDOW_AUTOSIZE);
     /**
