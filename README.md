@@ -1,4 +1,4 @@
-color-detection
+ros-color-detection
 ===============
 
 OpenCV and ROS Color Detection
