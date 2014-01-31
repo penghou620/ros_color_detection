@@ -7,6 +7,6 @@
 		<param name="frame" type="string" value="webcam" />
 		<param name="device" type="string" value="/dev/video0" />
 	</node>
-	<node name="color_detection" pkg="color_detection" type="color_detection">
+	<node name="color_detection" pkg="ros_color_detection" type="color_detection">
 	</node>
 </launch>

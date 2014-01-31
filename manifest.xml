@@ -1,13 +1,13 @@
 <package>
-  <description brief="color_detection">
+  <description brief="ros_color_detection">
 
-     color_detection
+     ros_color_detection
 
   </description>
   <author>penghou</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/color_detection</url>
+  <url>http://ros.org/wiki/ros_color_detection</url>
   <depend package="roscpp"/>
   <depend package="rospy"/>
   <depend package="std_msgs"/>
