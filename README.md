@@ -27,4 +27,4 @@ This package depends on [ros-groovy-camera-umd](http://wiki.ros.org/camera_umd) 
 	
 ## Run
 
-	roslaunch color_detection color_detection.launch
+	roslaunch ros_color_detection color_detection.launch
